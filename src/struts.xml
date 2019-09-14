@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<!-- START SNIPPET: cmis -->
+<struts>
+
+    <constant name="struts.i18n.reload" value="true" />
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <!-- 如果要 debugging，将相应的参数设置为true -->
+    <constant name="struts.devMode" value="false" />
+    <constant name="struts.configuration.xml.reload" value="true" />
+    <constant name="struts.custom.i18n.resources" value="Messages" />
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+    <constant name="struts.action.extension" value=",do,action" />
+    <!-- 上传文件最大尺寸 -->
+    <constant name="struts.multipart.maxSize" value="1000000000" />
+
+    <constant name="struts.convention.package.locators.basePackage" value="cn.lut.curiezhang" />
+    <constant name="struts.convention.result.path" value="/WEB-INF" />
+
+    <constant name="struts.serve.static" value="true" />
+    <constant name="struts.serve.static.browserCache" value="false" />
+
+</struts>
+<!-- END SNIPPET: cmis -->
+
