@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping>
+  <class name="cn.lut.curiezhang.model.Users" table="USERS">
+    <id name="userId">
+			<column name="USER_ID" length="32">
+				<comment>用户id</comment>
+			</column>
+    	<generator class="assigned"/>
+    </id>
+    <property name="userName">
+			<column name="USER_NAME" not-null="true" length="50">
+				<comment>用户名</comment>
+			</column>
+    </property>
+    <property name="userPassword">
+			<column name="USER_PASSWORD" not-null="true" length="128">
+				<comment>用户密码</comment>
+			</column>
+    </property>
+    <property name="userPhone">
+			<column name="USER_PHONE" length="20">
+				<comment>用户手机</comment>
+			</column>
+    </property>
+  </class>
+</hibernate-mapping>
