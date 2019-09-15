@@ -6,21 +6,31 @@
        xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="
        http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans-5.1.xsd
+       http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/aop
-       http://www.springframework.org/schema/aop/spring-aop-5.1.xsd
+       http://www.springframework.org/schema/aop/spring-aop.xsd
        http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context-5.1.xsd
+       http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/tx
-       http://www.springframework.org/schema/tx/spring-tx-5.1.xsd">
+       http://www.springframework.org/schema/tx/spring-tx.xsd">
        
 	<!-- START 配置业务层的类 -->
+	<bean id="userService" class="cn.lut.curiezhang.service.UserService">
+		<property name="userDao" ref="userDao"/>
+	</bean>
 	<!-- END 配置业务层的类 -->
 	
 	<!-- START 配置Dao类 -->
+	<bean id="userDao" class="cn.lut.curiezhang.dao.UserDao">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
 	<!-- END 配置Dao类 -->
 	
 	<!-- START 配置Action的类 -->
+	<bean id="userAction" class="cn.lut.curiezhang.action.UserAction" scope="prototype">
+		<!-- 手动注入Service -->
+		<property name="userService" ref="userService"/>
+	</bean>
 	<!-- END 配置Action的类 -->
 	
 	<!-- START 引入外部属性文件 -->
@@ -101,7 +111,7 @@
 		<!-- 配置Hibernate的属性 -->
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
@@ -114,6 +124,7 @@
 		<!-- 加载Hibernate中的映射文件 -->
 		<property name="mappingResources">
 			<list>
+				<value>cn/lut/curiezhang/model/Users.hbm.xml</value>
 			</list>
 		</property>
 	</bean>

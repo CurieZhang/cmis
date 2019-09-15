@@ -29,5 +29,5 @@
      <param-name>contextConfigLocation</param-name>
      <param-value>classpath:applicationContext.xml</param-value>
     </context-param>
- <!-- END Spring框架的核心监听器 -->
+<!-- END Spring框架的核心监听器 -->
 </web-app>

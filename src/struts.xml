@@ -10,7 +10,7 @@
     <constant name="struts.i18n.reload" value="true" />
     <constant name="struts.enable.DynamicMethodInvocation" value="false" />
     <!-- 如果要 debugging，将相应的参数设置为true -->
-    <constant name="struts.devMode" value="false" />
+    <constant name="struts.devMode" value="true" />
     <constant name="struts.configuration.xml.reload" value="true" />
     <constant name="struts.custom.i18n.resources" value="Messages" />
 	<constant name="struts.i18n.encoding" value="UTF-8" />
@@ -23,6 +23,8 @@
 
     <constant name="struts.serve.static" value="true" />
     <constant name="struts.serve.static.browserCache" value="false" />
+
+	<include file="struts-admin.users.xml" />
 
 </struts>
 <!-- END SNIPPET: cmis -->
