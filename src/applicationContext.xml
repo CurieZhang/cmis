@@ -15,22 +15,28 @@
        http://www.springframework.org/schema/tx/spring-tx.xsd">
        
 	<!-- START 配置业务层的类 -->
+	<!-- cmis.service -->
 	<bean id="userService" class="cn.lut.curiezhang.service.UserService">
 		<property name="userDao" ref="userDao"/>
 	</bean>
+  <!-- /cmis.service -->
 	<!-- END 配置业务层的类 -->
 	
 	<!-- START 配置Dao类 -->
+  <!-- cmis.dao -->
 	<bean id="userDao" class="cn.lut.curiezhang.dao.UserDao">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
+  <!-- /cmis.dao -->
 	<!-- END 配置Dao类 -->
 	
 	<!-- START 配置Action的类 -->
+  <!-- cmis.action -->
 	<bean id="userAction" class="cn.lut.curiezhang.action.UserAction" scope="prototype">
 		<!-- 手动注入Service -->
 		<property name="userService" ref="userService"/>
 	</bean>
+  <!-- /cmis.action -->
 	<!-- END 配置Action的类 -->
 	
 	<!-- START 引入外部属性文件 -->
@@ -124,7 +130,9 @@
 		<!-- 加载Hibernate中的映射文件 -->
 		<property name="mappingResources">
 			<list>
+			  <!-- cmis.values -->
 				<value>cn/lut/curiezhang/model/Users.hbm.xml</value>
+        <!-- /cmis.values -->
 			</list>
 		</property>
 	</bean>
