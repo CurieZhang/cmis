@@ -2,6 +2,7 @@ package cn.lut.curiezhang.action;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.ResourceBundle;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,7 +15,7 @@ import cn.lut.curiezhang.service.UserService;
 import cn.lut.curiezhang.util.SecurityFunctions;
 
 /**
- * 用户管理的Action类
+ * SSH框架进行用户管理的视图层的Action类
  * @author curiezhang
  *
  */
@@ -29,29 +30,40 @@ public class UserAction extends ActionSupport implements ModelDriven<Object> {
 	 */
 	private UserService userService;
 	public void setUserService(UserService userService) {
+		log.debug("Action > 注入的Service类");
 		this.userService = userService;
 	}
 	
 	/**
-	 * 模型驱动使用的类
+	 * Action中模型驱动使用的类
 	 */
 	private Users model = new Users();
 	public void setModel(Users model) {
+		log.debug("Action > 设置模型值，id为{}", userId);
 		this.model = model;
 	}
 	@Override
 	public Object getModel() {
-		return (list != null ? list : model);
+		if (list != null) {
+			if(list.size() != 0)
+				log.debug("Action > 得到列表第一个元素id值，id为{}", ((Users) list.iterator().next()).getUserId());
+			return list;
+		} else {
+			log.debug("Action > 得到模型值，id为{}", userId);
+			return model;
+		}
 	}
 
 	/**
-	 * 搜索唯一id使用的参数
+	 * Action中搜索唯一id使用的参数
 	 */
 	private String userId;
 	public String getUserId() {
+		log.debug("Action > 得到用户id，id为{}", userId);
 		return userId;
 	}
 	public void setUserId(String userId) {
+		log.debug("Action > 设置用户id，id为{}", userId);
 		if(userId != null) {
 			this.model = userService.getUserId(userId);
 		}
@@ -59,127 +71,105 @@ public class UserAction extends ActionSupport implements ModelDriven<Object> {
 	}
 	
 	/**
-	 * 搜索所有数据时的返回结果
+	 * Action中搜索所有数据时的返回结果
+	 * @return list
 	 */
 	private Collection<Users> list;
 	public Collection<Users> getList() {
+		log.debug("Action > 查询所有用户");
 		return list;
 	}
 	
 	/**
-	 * validate()方法执行后会调用execute()方法
-	 * 执行update()方法时，也进行了validate()验证？？？所以，就注释掉了
-		public void validate() {
-			System.out.println("v:" + model.getUserName() + ":");
-	        if (model.getUserName() == null || model.getUserName().length() == 0) {
-	            addFieldError("userName", "用户名不为空");
-	        }
-	    }
-	 */
-	
-	/**
-	 * 填写表单时执行该方法，可进行有效性验证
+	 * Action中填写表单时执行该方法，可进行有效性验证
 	 * @return true 不能通过有效性验证
 	 */
-	public boolean validateForm() {
-        if (model.getUserName() == null || model.getUserName().length() == 0) {
-            addFieldError("userName", "用户名不为空");
-            return true;
-        }
-        return false;
+	public void validate() {
+		log.debug("Action > 有效性验证，id为{}", userId);
     }
 
 	/**
-	 * 首页
+	 * Action中首页
 	 */
     public String index() {
+    	log.debug("Action > 访问index页面");
     	list = userService.getAll();
 		return SUCCESS;
     }
 	/**
-	 * 添加
+	 * Action中添加
 	 */
     public String add() {
+    	log.debug("Action > 访问add页面");
     	model = new Users();
     	return "success";
     }
 	/**
-	 * 删除
+	 * Action中确认删除
 	 */
     public String deleteConfirm() {
+    	log.debug("Action > 访问deleteConfirm页面");
     	return "success";
     }
 	/**
-	 * 修改
+	 * Action中修改
 	 */
     public String modify() {
+    	log.debug("Action > 访问modify页面");
     	return "success";
     }
 	/**
-	 * 查询
+	 * Action中查询
 	 */
     public String browse() {
+    	log.debug("Action > 访问browse页面");
     	return "success";
     }
 	/**
-	 * 登录
+	 * Action中登录
 	 */
     public String loginAdmin() {
+    	log.debug("Action > 访问管理员登录页面");
     	return "loginAdmin";
     }
     
     /**
-     * 创建用户
+     * Action中创建新的用户
      * @return
      */
     public String create() {
-    	if(validateForm())
-    		return "error";
-        log.debug("curieCMS：建立新用户 {}", model.getUserName());
+    	log.debug("Action > 添加新用户，id为 {}", userId);
         Collection<String> names = new ArrayList<String>();
+        Collection<String> ids = new ArrayList<String>();
         list = userService.getAll();
         for(Users user : list) {
         	names.add(user.getUserName());
+        	ids.add(user.getUserId());
         }
-        if(names.contains(model.getUserName())){
-        	addActionMessage("该用户名已存在！");
+        if(names.contains(model.getUserName()) || ids.contains(model.getUserId())){
+            String info = ResourceBundle.getBundle("Messages").getString("Users.result.createError");
+            addActionMessage(info);
         	return "error";
         } else {
         	model.setUserPassword(SecurityFunctions.sha3(model.getUserPassword(), 512));
             userService.save(model);
-            addActionMessage("创建用户成功！");
+            String info = ResourceBundle.getBundle("Messages").getString("Users.result.create");
+            addActionMessage(info);
             return "success";
         }
     }
 
     /**
-     * 查找用户
-     * @return
-     */
-    public String findUser() {
-    	if(validateForm())
-    		return "error";
-        log.debug("curieCMS：查找用户 {}", model.getUserName());
-        Collection<String> names = new ArrayList<String>();
-        list = userService.getAll();
-        for(Users user : list) {
-        	names.add(user.getUserName());
-        }
-        if(names.contains(model.getUserName())){
-        	addActionMessage("我们将通过电子邮件，重置用户密码，请注意查收！");
-        	return "success";
-        } else {
-            addActionMessage("该电子邮件的用户不存在，请注册！");
-            return "error";
-        }
-    }
-
-    /**
-     * 删除用户
+     * Action中删除指定id的用户
      * @return
      */
     public String delete() {
-        log.debug("curieCMS：删除用户 {}", userId);
+        log.debug("Action > 删除指定id的用户，id为 {}", userId);
+        if(userId == null) {
+            String info = ResourceBundle.getBundle("Messages").getString("Users.result.deleteError");
+            addActionMessage(info);
+        	return "error";
+        }
     	Collection<String> names = new ArrayList<String>();
         list = userService.getAll();
         for(Users user : list) {
@@ -187,22 +177,22 @@ public class UserAction extends ActionSupport implements ModelDriven<Object> {
         }
         if(names.contains(userId)){
 	        userService.delete(userId);
-	        addActionMessage("用户删除成功！");
+            String info = ResourceBundle.getBundle("Messages").getString("Users.result.delete");
+            addActionMessage(info);
 	        return "success";
         } else {
-        	addActionMessage("该用户不存在，已删除！");
+            String info = ResourceBundle.getBundle("Messages").getString("Users.result.deleteError");
+            addActionMessage(info);
         	return "error";
         }
     }
 
     /**
-     * 修改用户
+     * Action中修改用户信息
      * @return
      */
     public String update() {
-    	if(validateForm())
-    		return "error";
-        log.debug("curieCMS：修改用户 {}", model.getUserName());
+    	log.debug("Action > 修改用户信息，id为 {}", userId);
         String newUserName = model.getUserName();
         String userId = model.getUserId();
     	Collection<String> names = new ArrayList<String>();
@@ -212,39 +202,43 @@ public class UserAction extends ActionSupport implements ModelDriven<Object> {
         		names.add(user.getUserName());
         }
         if(names.contains(newUserName)){
-        	addActionMessage("该用户名已存在！");
+            String info = ResourceBundle.getBundle("Messages").getString("Users.result.updateError");
+            addActionMessage(info);
         	return "error";
         } else {
+        	model.setUserPassword(SecurityFunctions.sha3(this.getUserPassword2(), 512));
             userService.update(model);
-            addActionMessage("修改成功！");
+            String info = ResourceBundle.getBundle("Messages").getString("Users.result.update");
+            addActionMessage(info);
             return "success";
         }
     }
 
-    /**
-     * 更新密码
+	/**
+	 * Action中再次输入密码使用
+	 */
+	private String userPassword2;
+	public String getUserPassword2() {
+		return userPassword2;
+	}
+	public void setUserPassword2(String userPassword2) {
+		this.userPassword2 = userPassword2;
+	}
+
+	/**
+     * Action中修改用户密码
      * @return
      */
     public String updatePassword() {
-    	if(validateForm())
-    		return "error";
-        log.debug("curieCMS：修改用户 {}", model.getUserName());
-        String newUserName = model.getUserName();
+    	log.debug("Action > 修改用户信息，id为 {}", userId);
         String userId = model.getUserId();
-    	Collection<String> names = new ArrayList<String>();
-        list = userService.getAll();
-        for(Users user : list) {
-        	if(user.getUserId().equals(userId) == false)
-        		names.add(user.getUserName());
-        }
-        if(names.contains(newUserName)){
-        	addActionMessage("该用户名已存在！");
-        	return "error";
-        } else {
-        	model.setUserPassword(SecurityFunctions.sha3(model.getUserPassword(), 512));
-            userService.update(model);
-            addActionMessage("修改成功！");
-            return "success";
-        }
+        model = userService.getUserById(userId);
+    	log.debug("Action > 修改用户信息，id为 {},{},{}", userId, model.getUserName(), model.getUserPhone());
+        
+    	model.setUserPassword(SecurityFunctions.sha3(this.getUserPassword2(), 512));
+        userService.update(model);
+        String info = ResourceBundle.getBundle("Messages").getString("Users.result.updatePassword");
+        addActionMessage(info);
+        return "success";
     }
 }

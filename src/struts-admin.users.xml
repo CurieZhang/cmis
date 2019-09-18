@@ -8,35 +8,40 @@
 		<!-- START userAction -->
 		<action name="index" class="userAction" method="index">
 			<result name="success">index.jsp</result>
+			<interceptor-ref name="basicStack"/>
 		</action>
 		<action name="add" class="userAction" method="add">
 			<result name="success">add.jsp</result>
+			<interceptor-ref name="basicStack"/>
 		</action>
 		<action name="browse" class="userAction" method="browse">
 			<result name="success">browse.jsp</result>
+			<interceptor-ref name="basicStack"/>
 		</action>
-		<action name="modifyPassword" class="userAction" method="modify">
-			<result name="success">modifyPassword.jsp</result>
-		</action>
-		<action name="update" class="userAction" method="updatePassword">
-			<result name="success">modifyPassword.jsp</result>
-			<result name="error">modifyPassword.jsp</result>
-			<result name="input">modifyPassword.jsp</result>
+		<action name="update" class="userAction" method="update">
+			<result name="success">modify.jsp</result>
+      <result name="error">modify.jsp</result>
+      <result name="input">modify.jsp</result>
+			<interceptor-ref name="defaultStack"/>
 		</action>
 		<action name="modify" class="userAction" method="modify">
 			<result name="success">modify.jsp</result>
+			<interceptor-ref name="basicStack"/>
 		</action>
 		<action name="deleteConfirm" class="userAction" method="deleteConfirm">
 			<result name="success">deleteConfirm.jsp</result>
+			<interceptor-ref name="basicStack"/>
 		</action>
 		<action name="create" class="userAction" method="create">
 			<result name="success">add.jsp</result>
 			<result name="error">add.jsp</result>
 			<result name="input">add.jsp</result>
+			<interceptor-ref name="defaultStack"/>
 		</action>
 		<action name="delete" class="userAction" method="delete">
 			<result name="success">deleteConfirm.jsp</result>
 			<result name="error">deleteConfirm.jsp</result>
+			<interceptor-ref name="basicStack"/>
 		</action>
 		<!-- END userAction -->
 	</package>

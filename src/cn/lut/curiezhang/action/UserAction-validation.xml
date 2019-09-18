@@ -7,7 +7,7 @@
   <field name="userId">
     <field-validator type="requiredstring">
       <param name="trim">true</param>
-      <message>请填写用户编号</message>
+      <message>必须输入用户编号</message>
     </field-validator>
     <field-validator type="stringlength">
       <param name="minLength">3</param>
@@ -18,7 +18,7 @@
   <field name="userName">
     <field-validator type="requiredstring">
       <param name="trim">true</param>
-      <message>请填写用户名</message>
+      <message>必须输入用户名</message>
     </field-validator>
     <field-validator type="stringlength">
       <param name="minLength">2</param>
@@ -28,7 +28,7 @@
   </field>
   <field name="userPassword">
     <field-validator type="requiredstring">
-      <message>请填写密码</message>
+      <message>必须输入用户密码</message>
     </field-validator>
     <field-validator type="stringlength">
       <param name="minLength">6</param>
@@ -38,10 +38,10 @@
   </field>
   <field name="userPassword2">
     <field-validator type="requiredstring">
-      <message>请再次输入密码</message>
+      <message>必须再次输入用户密码</message>
     </field-validator>
     <field-validator type="fieldexpression">  
-      <param name="expression"><![CDATA[userPassword1==userPassword]]></param>  <!--这里也可以用repassword.equals(password)//-->
+      <param name="expression"><![CDATA[userPassword2==userPassword]]></param>  <!--这里也可以用repassword.equals(password)//-->
       <message>两次密码不相等</message>  
     </field-validator>
   </field>
