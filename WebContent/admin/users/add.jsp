@@ -41,68 +41,68 @@
 
   <s:form id="myForm" action="create" method="post" namespace="/admin/users" cssClass="form-horizontal" theme="simple" validate="false">
     <div class="form-group">
-      <label class="col-sm-2 control-label text-danger" for="userId">
-        <s:text name="Users.fieldName.userId"/>&nbsp;<i class="fa fa-arrow-circle-right text-danger"></i>
+      <label class="col-sm-6 text-danger" for="userId">
+        <s:text name="Users.fieldName.userId"/>&nbsp;<i class="fa fa-flag text-danger"></i>
       </label>
-      <div class="col-sm-4">
+      <div class="col-sm-6">
         <s:textfield id="userId" name="userId" 
                      placeholder="%{getText('Users.fieldPrompt.userId')}" cssClass="form-control"/>
       </div>
       <div class="col-sm-6">
-        <s:fielderror fieldName="userId" />
+        <s:fielderror fieldName="userId" cssClass="alert alert-danger"/>
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-2 control-label" for="userName">
-        <s:text name="Users.fieldName.userName"/>&nbsp;<i class="fa fa-arrow-circle-right text-danger"></i>
+      <label class="col-sm-6 control-label" for="userName">
+        <s:text name="Users.fieldName.userName"/>&nbsp;<i class="fa fa-pen-fancy text-danger"></i>
       </label>
-      <div class="col-sm-4">
+      <div class="col-sm-6">
         <s:textfield id="userName" name="userName" 
                      placeholder="%{getText('Users.fieldPrompt.userName')}" cssClass="form-control"/>
       </div>
       <div class="col-sm-6">
-        <s:fielderror fieldName="userName" />
+        <s:fielderror fieldName="userName" cssClass="alert alert-danger"/>
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-2 control-label" for="userPassword">
-        <s:text name="Users.fieldName.userPassword"/>&nbsp;<i class="fa fa-arrow-circle-right text-danger"></i>
+      <label class="col-sm-6 control-label" for="userPassword">
+        <s:text name="Users.fieldName.userPassword"/>&nbsp;<i class="fa fa-ellipsis-h text-danger"></i>
       </label>
-      <div class="col-sm-4">
+      <div class="col-sm-6">
         <s:textfield id="userPassword" name="userPassword" type="password" 
                      placeholder="%{getText('Users.fieldPrompt.userPassword')}" cssClass="form-control"/>
       </div>
       <div class="col-sm-6">
-        <s:fielderror fieldName="userPassword" />
+        <s:fielderror fieldName="userPassword" cssClass="alert alert-danger"/>
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-2 control-label" for="userPassword2">
-        <s:text name="Users.fieldName.userPasswordConfirm"/>&nbsp;<i class="fa fa-arrow-circle-right text-danger"></i>
+      <label class="col-sm-6 control-label" for="userPassword2">
+        <s:text name="Users.fieldName.userPasswordConfirm"/>&nbsp;<i class="fa fa-ellipsis-h text-danger"></i>
       </label>
-      <div class="col-sm-4">
+      <div class="col-sm-6">
         <s:textfield id="userPassword2" type="password" 
                      placeholder="%{getText('Users.fieldPrompt.userPasswordConfirm')}" name="userPassword2" cssClass="form-control" />
       </div>
       <div class="col-sm-6">
-        <s:fielderror fieldName="userPassword2" />
+        <s:fielderror fieldName="userPassword2" cssClass="alert alert-danger"/>
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-2 control-label" for="userPhone">
-        <s:text name="Users.fieldName.userPhone"/>&nbsp;<i class="fa fa-arrow-circle-right text-danger"></i>
+      <label class="col-sm-6 control-label" for="userPhone">
+        <s:text name="Users.fieldName.userPhone"/>&nbsp;<i class="fa fa-mobile-alt text-danger"></i>
       </label>
-      <div class="col-sm-4">
+      <div class="col-sm-6">
         <s:textfield id="userPhone" name="userPhone" 
                      placeholder="%{getText('Users.fieldPrompt.userPhone')}" cssClass="form-control"/>
       </div>
       <div class="col-sm-6">
-        <s:fielderror fieldName="userPhone" />
+        <s:fielderror fieldName="userPhone" cssClass="alert alert-danger"/>
       </div>
     </div>
 <% String reset = java.util.ResourceBundle.getBundle("Messages").getString("Users.button.reset"); %>
     <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-4">
+      <div class="col-sm-offset-2 col-sm-6">
         <s:submit cssClass="btn btn-primary" value="%{getText('Users.button.save')}"/>
         <input type="button" id="reset" class="btn btn-info" value="<%=reset%>" onclick="cleanMyForm()"/>
       </div>

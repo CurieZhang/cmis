@@ -33,8 +33,8 @@
   
   <s:form id="myForm" method="post" action="update?userId=%{userId}" namespace="/admin/users" cssClass="form-horizontal" theme="simple">
     <div class="form-group">
-      <label class="col-sm-2 control-label" for="userId"><s:text name="Users.fieldName.userId"/></label>
-      <div class="col-sm-4">
+      <label class="col-sm-6 control-label" for="userId"><s:text name="Users.fieldName.userId"/></label>
+      <div class="col-sm-6">
         <s:if test="model.userId != null"> 
           <s:textfield id="userId" name="model.userId" readonly="true" cssClass="form-control"/>
         </s:if>
@@ -42,13 +42,13 @@
           <s:textfield id="userId" name="userId" readonly="true" cssClass="form-control"/> 
         </s:else>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-6">
         <s:fielderror fieldName="userId" />
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-2 control-label" for="userName"><s:text name="Users.fieldName.userName"/></label>
-      <div class="col-sm-4">
+      <label class="col-sm-6 control-label" for="userName"><s:text name="Users.fieldName.userName"/></label>
+      <div class="col-sm-6">
 				<s:if test="model.userName != null"> 
 	  			<s:textfield id="userName" name="model.userName" readonly="true" cssClass="form-control"/>
 				</s:if>
@@ -56,31 +56,31 @@
 		   		<s:textfield id="userName" name="userName" readonly="true" cssClass="form-control"/> 
 				</s:else>
 	    </div>
-	    <div class="col-sm-4">
+	    <div class="col-sm-6">
 	      <s:fielderror fieldName="userName" />
 	    </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-2 control-label" for="userPassword"><s:text name="Users.fieldName.userPassword"/></label>
-      <div class="col-sm-4">
+      <label class="col-sm-6 control-label" for="userPassword"><s:text name="Users.fieldName.userPassword"/></label>
+      <div class="col-sm-6">
 	      <s:textfield id="userPassword" type="password" name="userPassword" placeholder="%{getText('Users.fieldPrompt.userPassword')}" cssClass="form-control" />
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-6">
         <s:fielderror fieldName="userPassword" />
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-2 control-label" for="userPassword2"><s:text name="Users.fieldName.userPasswordConfirm"/></label>
-      <div class="col-sm-4">
+      <label class="col-sm-6 control-label" for="userPassword2"><s:text name="Users.fieldName.userPasswordConfirm"/></label>
+      <div class="col-sm-6">
      		<s:textfield id="userPassword2" type="password" placeholder="%{getText('Users.fieldPrompt.userPasswordConfirm')}" name="userPassword2" cssClass="form-control" />
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-6">
         <s:fielderror fieldName="userPassword2" />
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-2 control-label" for="userPhone"><s:text name="Users.fieldName.userPhone"/></label>
-      <div class="col-sm-4">
+      <label class="col-sm-6 control-label" for="userPhone"><s:text name="Users.fieldName.userPhone"/></label>
+      <div class="col-sm-6">
 	      <s:if test="model.userPhone != null"> 
 	        <s:textfield id="userPhone" name="model.userPhone" placeholder="%{getText('Users.fieldPrompt.userPhone')}" cssClass="form-control"/>
 	      </s:if>
@@ -88,13 +88,13 @@
 	        <s:textfield id="userPhone" name="userPhone" placeholder="%{getText('Users.fieldPrompt.userPhone')}" cssClass="form-control"/> 
 	      </s:else>
       </div>
-	    <div class="col-sm-4">
+	    <div class="col-sm-6">
         <s:fielderror fieldName="userPhone" />
 	    </div>
     </div>
 <% String reset = java.util.ResourceBundle.getBundle("Messages").getString("Users.button.reset"); %>
     <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-4">
+      <div class="col-sm-offset-2 col-sm-6">
         <s:submit cssClass="btn btn-primary" value="%{getText('Users.button.modify')}"/>
         <input type="button" id="reset" class="btn btn-info" value="<%=reset%>" onclick="cleanMyForm()"/>
       </div>
