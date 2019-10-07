@@ -14,6 +14,15 @@ public class Users {
 	private String userPassword;
 	// 用户联系电话
 	private String userPhone;
+	public Users() {
+		super();
+	}
+	public Users(String userId, String userName, String userPassword) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+		this.userPassword = userPassword;
+	}
 	public String getUserId() {
 		return userId;
 	}
