@@ -30,11 +30,11 @@ public class UserDao extends HibernateDaoSupport {
 	/**
 	 * Dao中查询所有用户
 	 */
-	@SuppressWarnings({ "unchecked", "deprecation" })
+	@SuppressWarnings({ "unchecked" })
 	public Collection<Users> getAll() {
 		log.debug("Dao 》 查询所有用户");
 		Collection<Users> list;
-		list = (Collection<Users>) this.getHibernateTemplate().find("from Users");
+		list = (Collection<Users>) this.getHibernateTemplate().getSessionFactory().openSession().createQuery( "from Users" ).list();
 		return list;
 	}
 

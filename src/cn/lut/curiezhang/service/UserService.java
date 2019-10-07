@@ -1,6 +1,8 @@
 package cn.lut.curiezhang.service;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.ResourceBundle;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -8,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cn.lut.curiezhang.dao.UserDao;
 import cn.lut.curiezhang.model.Users;
+import cn.lut.curiezhang.util.SecurityFunctions;
 
 /**
  * SSH框架进行用户管理的业务层的Service类
@@ -30,9 +33,24 @@ public class UserService {
 	 * Service业务层保存用户
 	 * @param user
 	 */
-	public void save(Users user) {
+	public String save(Users user) {
 		log.debug("Service > 存储用户信息，id为 {}", user.getUserId());
-		userDao.save(user);
+		Collection<String> names = new ArrayList<String>();
+        Collection<String> ids = new ArrayList<String>();
+        list = getAll();
+        for(Users user1 : list) {
+        	names.add(user1.getUserName());
+        	ids.add(user1.getUserId());
+        }
+        if(names.contains(user.getUserName()) || ids.contains(user.getUserId())){
+            String info = ResourceBundle.getBundle("Messages").getString("Users.result.createError");
+        	return info;
+        } else {
+        	user.setUserPassword(SecurityFunctions.sha3(user.getUserPassword(), 512));
+            String info = ResourceBundle.getBundle("Messages").getString("Users.result.create");
+    		userDao.save(user);
+            return info;
+        }
 	}
 
 	/**

@@ -139,24 +139,9 @@ public class UserAction extends ActionSupport implements ModelDriven<Object> {
      */
     public String create() {
     	log.debug("Action > 添加新用户，id为 {}", userId);
-        Collection<String> names = new ArrayList<String>();
-        Collection<String> ids = new ArrayList<String>();
-        list = userService.getAll();
-        for(Users user : list) {
-        	names.add(user.getUserName());
-        	ids.add(user.getUserId());
-        }
-        if(names.contains(model.getUserName()) || ids.contains(model.getUserId())){
-            String info = ResourceBundle.getBundle("Messages").getString("Users.result.createError");
-            addActionMessage(info);
-        	return "error";
-        } else {
-        	model.setUserPassword(SecurityFunctions.sha3(model.getUserPassword(), 512));
-            userService.save(model);
-            String info = ResourceBundle.getBundle("Messages").getString("Users.result.create");
-            addActionMessage(info);
-            return "success";
-        }
+        String info = userService.save(model);
+        addActionMessage(info);
+        return "success";
     }
 
     /**
