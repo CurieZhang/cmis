@@ -1,6 +1,5 @@
 package cn.lut.curiezhang.action;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ResourceBundle;
 
@@ -161,25 +160,9 @@ public class UserAction extends ActionSupport implements ModelDriven<Object> {
      */
     public String update() {
     	log.debug("Action > 修改用户信息，id为 {}", userId);
-        String newUserName = model.getUserName();
-        String userId = model.getUserId();
-    	Collection<String> names = new ArrayList<String>();
-        list = userService.getAll();
-        for(Users user : list) {
-        	if(user.getUserId().equals(userId) == false)
-        		names.add(user.getUserName());
-        }
-        if(names.contains(newUserName)){
-            String info = ResourceBundle.getBundle("Messages").getString("Users.result.updateError");
-            addActionMessage(info);
-        	return "error";
-        } else {
-        	model.setUserPassword(SecurityFunctions.sha3(this.getUserPassword2(), 512));
-            userService.update(model);
-            String info = ResourceBundle.getBundle("Messages").getString("Users.result.update");
-            addActionMessage(info);
-            return "success";
-        }
+    	String info = userService.update(model);
+        addActionMessage(info);
+        return "success";
     }
 
 	/**

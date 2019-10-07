@@ -35,14 +35,12 @@ public class UserService {
 	 */
 	public String save(Users user) {
 		log.debug("Service > 存储用户信息，id为 {}", user.getUserId());
-		Collection<String> names = new ArrayList<String>();
-        Collection<String> ids = new ArrayList<String>();
-        list = getAll();
-        for(Users user1 : list) {
-        	names.add(user1.getUserName());
-        	ids.add(user1.getUserId());
-        }
-        if(names.contains(user.getUserName()) || ids.contains(user.getUserId())){
+		/*
+		 * Collection<String> names = new ArrayList<String>(); Collection<String> ids =
+		 * new ArrayList<String>(); list = getAll(); for(Users user1 : list) {
+		 * names.add(user1.getUserName()); ids.add(user1.getUserId()); }
+		 */
+        if(isExistByName(user) || isExist(user.getUserId())){
             String info = ResourceBundle.getBundle("Messages").getString("Users.result.createError");
         	return info;
         } else {
@@ -51,6 +49,34 @@ public class UserService {
     		userDao.save(user);
             return info;
         }
+	}
+	
+	/**
+	 * Service业务层判断用户是否存在
+	 * @param userId
+	 */
+	private boolean isExist(String userId) {
+		Users user = getUserById(userId);
+		if (user != null)
+			return true;
+		else
+			return false;
+	}
+	/**
+	 * Service业务层判断用户是否存在
+	 * @param userId
+	 */
+	private boolean isExistByName(Users user) {
+    	Collection<String> names = new ArrayList<String>();
+        list = getAll();
+        for(Users user1 : list) {
+        	if(user1.getUserId().equals(user.getUserId()) == false)
+        		names.add(user1.getUserName());
+        }
+		if (names.contains(user.getUserName()))
+			return true;
+		else
+			return false;
 	}
 
 	/**
@@ -74,12 +100,11 @@ public class UserService {
             String info = ResourceBundle.getBundle("Messages").getString("Users.result.deleteError");
         	return info;
         }
-    	Collection<String> names = new ArrayList<String>();
-        list = getAll();
-        for(Users user : list) {
-       		names.add(user.getUserId());
-        }
-        if(names.contains(userId)){
+		/*
+		 * Collection<String> names = new ArrayList<String>(); list = getAll();
+		 * for(Users user : list) { names.add(user.getUserId()); }
+		 */
+        if(isExist(userId)){
     		userDao.delete(userId);
             String info = ResourceBundle.getBundle("Messages").getString("Users.result.delete");
         	return info;
@@ -102,9 +127,24 @@ public class UserService {
 	 * Service业务层修改用户信息
 	 * @param user
 	 */
-	public void update(Users user) {
+	public String update(Users user) {
 		log.debug("Service > 修改用户信息，id为 {}", user.getUserId());
-		userDao.update(user);
+        //String newUserName = user.getUserName();
+		/*
+		 * String userId = user.getUserId(); Collection<String> names = new
+		 * ArrayList<String>(); list = getAll(); for(Users user1 : list) {
+		 * if(user1.getUserId().equals(userId) == false) names.add(user1.getUserName());
+		 * }
+		 */
+        if(isExistByName(user)){
+            String info = ResourceBundle.getBundle("Messages").getString("Users.result.updateError");
+        	return info;
+        } else {
+        	user.setUserPassword(SecurityFunctions.sha3(user.getUserPassword(), 512));
+            userDao.update(user);
+            String info = ResourceBundle.getBundle("Messages").getString("Users.result.update");
+        	return info;
+        }
 	}
 	
 	/**
