@@ -150,26 +150,9 @@ public class UserAction extends ActionSupport implements ModelDriven<Object> {
      */
     public String delete() {
         log.debug("Action > 删除指定id的用户，id为 {}", userId);
-        if(userId == null) {
-            String info = ResourceBundle.getBundle("Messages").getString("Users.result.deleteError");
-            addActionMessage(info);
-        	return "error";
-        }
-    	Collection<String> names = new ArrayList<String>();
-        list = userService.getAll();
-        for(Users user : list) {
-       		names.add(user.getUserId());
-        }
-        if(names.contains(userId)){
-	        userService.delete(userId);
-            String info = ResourceBundle.getBundle("Messages").getString("Users.result.delete");
-            addActionMessage(info);
-	        return "success";
-        } else {
-            String info = ResourceBundle.getBundle("Messages").getString("Users.result.deleteError");
-            addActionMessage(info);
-        	return "error";
-        }
+    	String info = userService.delete(userId);
+        addActionMessage(info);
+        return "success";
     }
 
     /**

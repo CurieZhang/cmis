@@ -68,9 +68,25 @@ public class UserService {
 	 * Service业务层删除指定id的用户
 	 * @param user
 	 */
-	public void delete(String userId) {
+	public String delete(String userId) {
 		log.debug("Service > 删除指定id的用户，id为 {}", userId);
-		userDao.delete(userId);
+        if(userId == null) {
+            String info = ResourceBundle.getBundle("Messages").getString("Users.result.deleteError");
+        	return info;
+        }
+    	Collection<String> names = new ArrayList<String>();
+        list = getAll();
+        for(Users user : list) {
+       		names.add(user.getUserId());
+        }
+        if(names.contains(userId)){
+    		userDao.delete(userId);
+            String info = ResourceBundle.getBundle("Messages").getString("Users.result.delete");
+        	return info;
+        } else {
+            String info = ResourceBundle.getBundle("Messages").getString("Users.result.deleteError");
+        	return info;
+        }
 	}
 
 	/**
