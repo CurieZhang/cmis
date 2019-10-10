@@ -26,5 +26,36 @@
 				<comment>用户手机</comment>
 			</column>
     </property>
+    <property name="userCreator">
+      <column name="USER_CREATOR" length="32">
+        <comment>创建人</comment>
+      </column>
+    </property>
+    <property name="userCreatingTime" type="java.util.Date">
+      <column name="USER_CREATING_TIME">
+        <comment>创建时间</comment>
+      </column>
+    </property>
+    <property name="userAuditor">
+      <column name="USER_AUDITOR" length="32">
+        <comment>审核人</comment>
+      </column>
+    </property>
+    <property name="userAuditingTime" type="java.util.Date">
+      <column name="USER_AUDITING_TIME">
+        <comment>审核时间</comment>
+      </column>
+    </property>
+    <!-- 0学生 1院校 2考点 3管理员 10锁定学生 11锁定院校 12锁定考点 13锁定管理员 90~93找回密码 -->
+    <property name="status">
+      <column name="STATUS" default="0" length="2">
+        <comment>用户状态：0学生 1院校 2考点 3管理员 4锁定学生 5锁定院校 6锁定考点 7锁定管理员 8找回学生密码 9找回院校密码 10找回考点密码 11找回管理员密码</comment>
+      </column>
+      <type name="org.hibernate.type.EnumType">
+        <param name="enumClass">cn.lut.curiezhang.model.UserStatus</param>
+        <param name="type">-6</param>
+        <!-- <param name="useNamed">true</param> -->
+      </type>
+    </property>
   </class>
 </hibernate-mapping>

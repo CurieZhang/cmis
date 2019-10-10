@@ -38,6 +38,8 @@
         <th><s:text name="Users.fieldName.userName"/></th>
         <th><s:text name="Users.fieldName.userPassword"/></th>
         <th><s:text name="Users.fieldName.userPhone"/></th>
+        <th><s:text name="Users.fieldName.userAuditingTime"/></th>
+        <th><s:text name="Users.fieldName.status"/></th>
         <th width="300px"><s:text name="DataTables.title.operate"/></th>
       </tr>
     </thead>
@@ -47,6 +49,8 @@
         <th><s:text name="Users.fieldName.userName"/></th>
         <th><s:text name="Users.fieldName.userPassword"/></th>
         <th><s:text name="Users.fieldName.userPhone"/></th>
+        <th><s:text name="Users.fieldName.userAuditingTime"/></th>
+        <th><s:text name="Users.fieldName.status"/></th>
         <th width="300px"><s:text name="DataTables.title.operate"/></th>
       </tr>
     </tfoot>
@@ -56,6 +60,12 @@
         <td class="verticalMiddle"><s:property value="userName"/></td>
         <td class="verticalMiddle"><s:property value="userPassword"/></td>
         <td class="verticalMiddle"><s:property value="userPhone"/></td>
+        <td class="verticalMiddle">
+          <s:if test="userAuditingTime != null">
+            <s:date name="userAuditingTime" format="yyyy年MM月dd日" />
+          </s:if>
+        </td>
+        <td class="verticalMiddle"><s:property value="status.information"/></td>
         <td width="230px" class="verticalMiddle">
           <div class="btn-group">
             <a href="browse?userId=${userId}" class="btn btn-success">

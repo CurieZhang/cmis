@@ -32,18 +32,62 @@
   <s:actionmessage cssClass="alert alert-danger"/>
   
   <table class="table table-striped">
+    <!-- userId -->
     <tr>
       <td class="span3 verticalMiddle text-right" width="120px"><s:text name="Users.fieldName.userId"/></td>
       <td class="span9 verticalMiddle"><s:property value="model.userId"/></td>
     </tr>
+    <!-- /userId -->
+    <!-- userName -->
     <tr>
       <td class="span3 verticalMiddle text-right"><s:text name="Users.fieldName.userName"/></td>
       <td class="span9 verticalMiddle"><s:property value="model.userName"/></td>
     </tr>
+    <!-- /userName -->
+    <!-- userPhone -->
     <tr>
       <td class="span3 verticalMiddle text-right"><s:text name="Users.fieldName.userPhone"/></td>
       <td class="span9 verticalMiddle"><s:property value="model.userPhone"/></td>
     </tr>
+    <!-- /userPhone -->
+    <!-- userCreator -->
+    <tr class="hidden">
+      <td class="span3 verticalMiddle text-right" width="120px">
+        <s:text name="Users.fieldName.userCreator"/>
+      </td>
+      <td class="span9 verticalMiddle"><s:property value="model.userCreator"/></td>
+    </tr>
+    <!-- /userCreator -->
+    <!-- userCreatingTime -->
+    <tr class="hidden">
+      <td class="span3 verticalMiddle text-right" width="120px">
+        <s:text name="Users.fieldName.userCreatingTime"/>
+      </td>
+      <td class="span9 verticalMiddle"><s:date name="model.userCreatingTime" format="yyyy年MM月dd日"/></td>
+    </tr>
+    <!-- /userCreatingTime -->
+    <!-- userAuditor -->
+    <tr class="hidden">
+      <td class="span3 verticalMiddle text-right" width="120px">
+        <s:text name="Users.fieldName.userAuditor"/>
+      </td>
+      <td class="span9 verticalMiddle"><s:property value="model.userAuditor"/></td>
+    </tr>
+    <!-- /userAuditor -->
+    <!-- userAuditingTime -->
+    <tr class="hidden">
+      <td class="span3 verticalMiddle text-right" width="120px">
+        <s:text name="Users.fieldName.userAuditingTime"/>
+      </td>
+      <td class="span9 verticalMiddle"><s:date name="model.userAuditingTime" format="yyyy年MM月dd日"/></td>
+    </tr>
+    <!-- /userAuditingTime -->
+    <!-- status -->
+    <tr>
+      <td class="span3 verticalMiddle text-right"><s:text name="Users.fieldName.status"/></td>
+      <td class="span9 verticalMiddle"><s:property value="model.status.information"/></td>
+    </tr>
+    <!-- /status -->
   </table>
   
   <hr>
