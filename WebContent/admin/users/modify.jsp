@@ -32,6 +32,7 @@
   <s:actionmessage cssClass="alert alert-danger"/>
   
   <s:form id="myForm" method="post" action="update?userId=%{userId}" namespace="/admin/users" cssClass="form-horizontal" theme="simple">
+   <!-- userId -->
     <div class="form-group">
       <label class="col-sm-6 control-label" for="userId"><s:text name="Users.fieldName.userId"/>&nbsp;<i class="fa fa-flag text-danger"></i></label>
       <div class="col-sm-6">
@@ -46,6 +47,8 @@
         <s:fielderror fieldName="userId" />
       </div>
     </div>
+   <!-- /userId -->
+   <!-- userName -->
     <div class="form-group">
       <label class="col-sm-6 control-label" for="userName"><s:text name="Users.fieldName.userName"/>&nbsp;<i class="fa fa-pen-fancy text-danger"></i></label>
       <div class="col-sm-6">
@@ -60,6 +63,8 @@
 	      <s:fielderror fieldName="userName" />
 	    </div>
     </div>
+   <!-- /userName -->
+   <!-- userPassword -->
     <div class="form-group">
       <label class="col-sm-6 control-label" for="userPassword"><s:text name="Users.fieldName.userPassword"/>&nbsp;<i class="fa fa-ellipsis-h text-danger"></i></label>
       <div class="col-sm-6">
@@ -69,6 +74,8 @@
         <s:fielderror fieldName="userPassword" />
       </div>
     </div>
+   <!-- /userPassword -->
+   <!-- userPassword2 -->
     <div class="form-group">
       <label class="col-sm-6 control-label" for="userPassword2"><s:text name="Users.fieldName.userPasswordConfirm"/>&nbsp;<i class="fa fa-ellipsis-h text-danger"></i></label>
       <div class="col-sm-6">
@@ -78,6 +85,8 @@
         <s:fielderror fieldName="userPassword2" />
       </div>
     </div>
+   <!-- /userPassword2 -->
+   <!-- /userCreator -->
     <div class="form-group">
       <label class="col-sm-6 control-label" for="userPhone"><s:text name="Users.fieldName.userPhone"/>&nbsp;<i class="fa fa-mobile-alt text-danger"></i></label>
       <div class="col-sm-6">
@@ -92,6 +101,7 @@
         <s:fielderror fieldName="userPhone" />
 	    </div>
     </div>
+    <!-- /userCreator -->
     <!-- userCreator -->
     <div class="form-group hidden">
       <label class="col-sm-6 control-label" for="userCreator">
