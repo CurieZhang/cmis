@@ -19,12 +19,18 @@
 	<bean id="userService" class="cn.lut.curiezhang.service.UserService">
 		<property name="userDao" ref="userDao"/>
 	</bean>
+	<bean id="examineeService" class="cn.lut.curiezhang.service.ExamineeService">
+		<property name="examineeDao" ref="examineeDao"/>
+	</bean>
   <!-- /cmis.service -->
 	<!-- END 配置业务层的类 -->
 	
 	<!-- START 配置Dao类 -->
   <!-- cmis.dao -->
 	<bean id="userDao" class="cn.lut.curiezhang.dao.UserDao">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="examineeDao" class="cn.lut.curiezhang.dao.ExamineeDao">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
   <!-- /cmis.dao -->
@@ -35,6 +41,10 @@
 	<bean id="userAction" class="cn.lut.curiezhang.action.UserAction" scope="prototype">
 		<!-- 手动注入Service -->
 		<property name="userService" ref="userService"/>
+	</bean>
+	<bean id="examineeAction" class="cn.lut.curiezhang.action.ExamineeAction" scope="prototype">
+		<!-- 手动注入Service -->
+		<property name="examineeService" ref="examineeService"/>
 	</bean>
   <!-- /cmis.action -->
 	<!-- END 配置Action的类 -->
@@ -132,6 +142,7 @@
 			<list>
 			  <!-- cmis.values -->
 				<value>cn/lut/curiezhang/model/Users.hbm.xml</value>
+				<value>cn/lut/curiezhang/model/Examinee.hbm.xml</value>
         <!-- /cmis.values -->
 			</list>
 		</property>

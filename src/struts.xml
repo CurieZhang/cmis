@@ -25,6 +25,7 @@
     <constant name="struts.serve.static.browserCache" value="false" />
 
 	<include file="struts-admin.users.xml" />
+	<include file="struts-admin.examinee.xml" />
 
 </struts>
 <!-- END SNIPPET: cmis -->
