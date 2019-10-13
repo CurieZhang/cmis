@@ -48,6 +48,7 @@
 
         <mapping resource="cn/lut/curiezhang/model/Users.hbm.xml"/>
         <mapping resource="cn/lut/curiezhang/model/Examinee.hbm.xml"/>
+        <mapping resource="cn/lut/curiezhang/model/Discipline.hbm.xml"/>
 
     </session-factory>
 

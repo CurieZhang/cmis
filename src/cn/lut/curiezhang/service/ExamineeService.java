@@ -10,10 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cn.lut.curiezhang.dao.ExamineeDao;
 import cn.lut.curiezhang.model.Examinee;
-import cn.lut.curiezhang.util.SecurityFunctions;
 
 /**
- * SSH框架进行用户管理的业务层的Service类
+ * SSH框架进行考生管理的业务层的Service类
  * @author curiezhang
  *
  */
@@ -30,11 +29,11 @@ public class ExamineeService {
 	}
 
 	/**
-	 * Service业务层保存用户
+	 * Service业务层保存考生
 	 * @param examinee
 	 */
 	public String save(Examinee examinee) {
-		log.debug("Service > 存储用户信息，id为 {}", examinee.getExamineeId());
+		log.debug("Service > 存储考生信息，id为 {}", examinee.getExamineeId());
 		/*
 		 * Collection<String> names = new ArrayList<String>(); Collection<String> ids =
 		 * new ArrayList<String>(); list = getAll(); for(Examinee examinee1 : list) {
@@ -44,7 +43,6 @@ public class ExamineeService {
             String info = ResourceBundle.getBundle("Messages").getString("Examinee.result.createError");
         	return info;
         } else {
-        	examinee.setExamineePassword(SecurityFunctions.sha3(examinee.getExamineePassword(), 512));
             String info = ResourceBundle.getBundle("Messages").getString("Examinee.result.create");
     		examineeDao.save(examinee);
             return info;
@@ -52,7 +50,7 @@ public class ExamineeService {
 	}
 	
 	/**
-	 * Service业务层判断用户是否存在
+	 * Service业务层判断考生是否存在
 	 * @param examineeId
 	 */
 	private boolean isExist(String examineeId) {
@@ -63,7 +61,7 @@ public class ExamineeService {
 			return false;
 	}
 	/**
-	 * Service业务层判断用户是否存在
+	 * Service业务层判断考生是否存在
 	 * @param examineeId
 	 */
 	private boolean isExistByName(Examinee examinee) {
@@ -80,22 +78,22 @@ public class ExamineeService {
 	}
 
 	/**
-	 * Service业务层查询所有用户
+	 * Service业务层查询所有考生
 	 * @return list
 	 */
 	private Collection<Examinee> list;
 	public Collection<Examinee> getAll() {
-		log.debug("Service > 查询所有用户");
+		log.debug("Service > 查询所有考生");
 		list = examineeDao.getAll();
 		return list;
 	}
 
 	/**
-	 * Service业务层删除指定id的用户
+	 * Service业务层删除指定id的考生
 	 * @param examinee
 	 */
 	public String delete(String examineeId) {
-		log.debug("Service > 删除指定id的用户，id为 {}", examineeId);
+		log.debug("Service > 删除指定id的考生，id为 {}", examineeId);
         if(examineeId == null) {
             String info = ResourceBundle.getBundle("Messages").getString("Examinee.result.deleteError");
         	return info;
@@ -115,20 +113,20 @@ public class ExamineeService {
 	}
 
 	/**
-	 * Service业务层根据id查询用户信息
+	 * Service业务层根据id查询考生信息
 	 * @param examineeId
 	 */
 	public Examinee getExamineeId(String examineeId) {
-		log.debug("Service > 根据id查询用户信息，id为 {}", examineeId);
+		log.debug("Service > 根据id查询考生信息，id为 {}", examineeId);
 		return examineeDao.getExamineeId(examineeId);
 	}
 
 	/**
-	 * Service业务层修改用户信息
+	 * Service业务层修改考生信息
 	 * @param examinee
 	 */
 	public String update(Examinee examinee) {
-		log.debug("Service > 修改用户信息，id为 {}", examinee.getExamineeId());
+		log.debug("Service > 修改考生信息，id为 {}", examinee.getExamineeId());
         //String newExamineeName = examinee.getExamineeName();
 		/*
 		 * String examineeId = examinee.getExamineeId(); Collection<String> names = new
@@ -140,7 +138,6 @@ public class ExamineeService {
             String info = ResourceBundle.getBundle("Messages").getString("Examinee.result.updateError");
         	return info;
         } else {
-        	examinee.setExamineePassword(SecurityFunctions.sha3(examinee.getExamineePassword(), 512));
             examineeDao.update(examinee);
             String info = ResourceBundle.getBundle("Messages").getString("Examinee.result.update");
         	return info;
@@ -148,21 +145,21 @@ public class ExamineeService {
 	}
 	
 	/**
-	 * Service业务层根据用户名和密码检查用户是否存在
+	 * Service业务层根据考生名和密码检查考生是否存在
 	 * @param examineename
 	 * @param password
 	 */
 	public Examinee checkExaminee(String examineename, String password) {
-		log.debug("Service > 根据用户名和密码检查用户信息，用户名为 {}", examineename);
+		log.debug("Service > 根据考生名和密码检查考生信息，考生名为 {}", examineename);
 		return examineeDao.checkExaminee(examineename, password);
 	}
 
 	/**
-	 * Service业务层根据id查询用户
+	 * Service业务层根据id查询考生
 	 * @param examineeId
 	 */
 	public Examinee getExamineeById(String examineeId) {
-		log.debug("Service > 根据id查询用户信息，id为 {}", examineeId);
+		log.debug("Service > 根据id查询考生信息，id为 {}", examineeId);
 		return examineeDao.getExamineeById(examineeId);
 	}
 

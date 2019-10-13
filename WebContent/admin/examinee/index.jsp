@@ -37,9 +37,9 @@
         <th><s:text name="Examinee.fieldName.examineeId"/></th>
         <th><s:text name="Examinee.fieldName.examineeName"/></th>
         <th><s:text name="Examinee.fieldName.examineePassword"/></th>
-        <th><s:text name="Examinee.fieldName.examineePhone"/></th>
+        <th><s:text name="Examinee.fieldName.examineeAddress"/></th>
         <th><s:text name="Examinee.fieldName.examineeAuditingTime"/></th>
-        <th><s:text name="Examinee.fieldName.status"/></th>
+        <th><s:text name="Examinee.fieldName.examineeStatus"/></th>
         <th width="300px"><s:text name="DataTables.title.operate"/></th>
       </tr>
     </thead>
@@ -48,9 +48,9 @@
         <th><s:text name="Examinee.fieldName.examineeId"/></th>
         <th><s:text name="Examinee.fieldName.examineeName"/></th>
         <th><s:text name="Examinee.fieldName.examineePassword"/></th>
-        <th><s:text name="Examinee.fieldName.examineePhone"/></th>
+        <th><s:text name="Examinee.fieldName.examineeAddress"/></th>
         <th><s:text name="Examinee.fieldName.examineeAuditingTime"/></th>
-        <th><s:text name="Examinee.fieldName.status"/></th>
+        <th><s:text name="Examinee.fieldName.examineeStatus"/></th>
         <th width="300px"><s:text name="DataTables.title.operate"/></th>
       </tr>
     </tfoot>
@@ -59,13 +59,13 @@
         <td class="verticalMiddle">${examineeId}</td>
         <td class="verticalMiddle"><s:property value="examineeName"/></td>
         <td class="verticalMiddle"><s:property value="examineePassword"/></td>
-        <td class="verticalMiddle"><s:property value="examineePhone"/></td>
+        <td class="verticalMiddle"><s:property value="examineeAddress"/></td>
         <td class="verticalMiddle">
           <s:if test="examineeAuditingTime != null">
             <s:date name="examineeAuditingTime" format="yyyy年MM月dd日" />
           </s:if>
         </td>
-        <td class="verticalMiddle"><s:property value="status.information"/></td>
+        <td class="verticalMiddle"><s:property value="examineeStatusView"/></td>
         <td width="230px" class="verticalMiddle">
           <div class="btn-group">
             <a href="browse?examineeId=${examineeId}" class="btn btn-success">

@@ -7,42 +7,23 @@
   <field name="examineeId">
     <field-validator type="requiredstring">
       <param name="trim">true</param>
-      <message>必须输入用户编号</message>
+      <message>请填写考生信息编号</message>
     </field-validator>
-    <field-validator type="stringlength">
-      <param name="minLength">3</param>
+    <!-- <field-validator type="stringlength">
+      <param name="minLength">4</param>
       <param name="maxLength">32</param>
-      <message>用户编号长度应在3到32个字符间</message>
-    </field-validator>
+      <message>考生信息编号长度应在4到32个字符间</message>
+    </field-validator> -->
   </field>
   <field name="examineeName">
     <field-validator type="requiredstring">
       <param name="trim">true</param>
-      <message>必须输入用户名</message>
+      <message>请填写考生信息名称</message>
     </field-validator>
-    <field-validator type="stringlength">
-      <param name="minLength">2</param>
-      <param name="maxLength">50</param>
-      <message>用户名长度应在2到50个字符间</message>
-    </field-validator>
-  </field>
-  <field name="examineePassword">
-    <field-validator type="requiredstring">
-      <message>必须输入用户密码</message>
-    </field-validator>
-    <field-validator type="stringlength">
-      <param name="minLength">6</param>
-      <param name="maxLength">128</param>
-      <message>为了您账号的安全，请设置6个以上的密码</message>
-    </field-validator>
-  </field>
-  <field name="examineePassword2">
-    <field-validator type="requiredstring">
-      <message>必须再次输入用户密码</message>
-    </field-validator>
-    <field-validator type="fieldexpression">  
-      <param name="expression"><![CDATA[examineePassword2==examineePassword]]></param>  <!--这里也可以用repassword.equals(password)//-->
-      <message>两次密码不相等</message>  
-    </field-validator>
+    <!-- <field-validator type="stringlength">
+      <param name="minLength">4</param>
+      <param name="maxLength">100</param>
+      <message>考生信息名称长度应在4到100个字符间</message>
+    </field-validator> -->
   </field>
 </validators>

@@ -1,4 +1,4 @@
-package cn.lut.curiezhang.dao;
+package cn.lut.curiezhang.model;
 
 import java.util.List;
 

@@ -44,12 +44,12 @@
       <td class="span9 verticalMiddle"><s:property value="model.examineeName"/></td>
     </tr>
     <!-- /examineeName -->
-    <!-- examineePhone -->
+    <!-- examineeAddress -->
     <tr>
-      <td class="span3 verticalMiddle text-right"><s:text name="Examinee.fieldName.examineePhone"/></td>
-      <td class="span9 verticalMiddle"><s:property value="model.examineePhone"/></td>
+      <td class="span3 verticalMiddle text-right"><s:text name="Examinee.fieldName.examineeAddress"/></td>
+      <td class="span9 verticalMiddle"><s:property value="model.examineeAddress"/></td>
     </tr>
-    <!-- /examineePhone -->
+    <!-- /examineeAddress -->
     <!-- examineeCreator -->
     <tr class="hidden">
       <td class="span3 verticalMiddle text-right" width="120px">
@@ -84,8 +84,8 @@
     <!-- /examineeAuditingTime -->
     <!-- status -->
     <tr>
-      <td class="span3 verticalMiddle text-right"><s:text name="Examinee.fieldName.status"/></td>
-      <td class="span9 verticalMiddle"><s:property value="model.status.information"/></td>
+      <td class="span3 verticalMiddle text-right"><s:text name="Examinee.fieldName.examineeStatus"/></td>
+      <td class="span9 verticalMiddle"><s:property value="model.examineeStatusView"/></td>
     </tr>
     <!-- /status -->
   </table>

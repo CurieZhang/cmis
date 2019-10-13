@@ -1,4 +1,4 @@
-package cn.lut.curiezhang.dao;
+package cn.lut.curiezhang.model;
 
 import java.util.List;
 
@@ -9,7 +9,6 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import cn.lut.curiezhang.model.Examinee;
-import cn.lut.curiezhang.util.SecurityFunctions;
 import junit.framework.TestCase;
 
 /**
@@ -48,8 +47,8 @@ public class ExamineeTest extends TestCase {
 		// create a couple of examinee...
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		session.save( new Examinee( "1111", "1111", SecurityFunctions.sha3("111111", 512) ) );
-		session.save( new Examinee( "2222", "2222", SecurityFunctions.sha3("111111", 512) ) );
+		session.save( new Examinee( "1111") );
+		session.save( new Examinee( "2222") );
 		session.getTransaction().commit();
 		session.close();
 
@@ -58,7 +57,7 @@ public class ExamineeTest extends TestCase {
 		session.beginTransaction();
 		List<Examinee> result = session.createQuery( "from Examinee" ).list();
 		for ( Examinee examinee : result ) {
-			System.out.println( "Examinee (" + examinee.getExamineeId() + ", " + examinee.getExamineeName() + ") : " + examinee.getExamineePassword() );
+			System.out.println( "Examinee (" + examinee.getExamineeId() + ") : " + examinee.getExamineeName() );
 		}
 		session.getTransaction().commit();
 		session.close();

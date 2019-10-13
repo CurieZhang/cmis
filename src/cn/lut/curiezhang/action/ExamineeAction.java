@@ -1,7 +1,6 @@
 package cn.lut.curiezhang.action;
 
 import java.util.Collection;
-import java.util.ResourceBundle;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,10 +10,9 @@ import com.opensymphony.xwork2.ModelDriven;
 
 import cn.lut.curiezhang.model.Examinee;
 import cn.lut.curiezhang.service.ExamineeService;
-import cn.lut.curiezhang.util.SecurityFunctions;
 
 /**
- * SSH框架进行用户管理的视图层的Action类
+ * SSH框架进行考生管理的视图层的Action类
  * @author curiezhang
  *
  */
@@ -58,11 +56,11 @@ public class ExamineeAction extends ActionSupport implements ModelDriven<Object>
 	 */
 	private String examineeId;
 	public String getExamineeId() {
-		log.debug("Action > 得到用户id，id为{}", examineeId);
+		log.debug("Action > 得到考生id，id为{}", examineeId);
 		return examineeId;
 	}
 	public void setExamineeId(String examineeId) {
-		log.debug("Action > 设置用户id，id为{}", examineeId);
+		log.debug("Action > 设置考生id，id为{}", examineeId);
 		if(examineeId != null) {
 			this.model = examineeService.getExamineeId(examineeId);
 		}
@@ -75,7 +73,7 @@ public class ExamineeAction extends ActionSupport implements ModelDriven<Object>
 	 */
 	private Collection<Examinee> list;
 	public Collection<Examinee> getList() {
-		log.debug("Action > 查询所有用户");
+		log.debug("Action > 查询所有考生");
 		return list;
 	}
 	
@@ -133,62 +131,34 @@ public class ExamineeAction extends ActionSupport implements ModelDriven<Object>
     }
     
     /**
-     * Action中创建新的用户
+     * Action中创建新的考生
      * @return
      */
     public String create() {
-    	log.debug("Action > 添加新用户，id为 {}", examineeId);
+    	log.debug("Action > 添加新考生，id为 {}", examineeId);
         String info = examineeService.save(model);
         addActionMessage(info);
         return "success";
     }
 
     /**
-     * Action中删除指定id的用户
+     * Action中删除指定id的考生
      * @return
      */
     public String delete() {
-        log.debug("Action > 删除指定id的用户，id为 {}", examineeId);
+        log.debug("Action > 删除指定id的考生，id为 {}", examineeId);
     	String info = examineeService.delete(examineeId);
         addActionMessage(info);
         return "success";
     }
 
     /**
-     * Action中修改用户信息
+     * Action中修改考生信息
      * @return
      */
     public String update() {
-    	log.debug("Action > 修改用户信息，id为 {}", examineeId);
+    	log.debug("Action > 修改考生信息，id为 {}", examineeId);
     	String info = examineeService.update(model);
-        addActionMessage(info);
-        return "success";
-    }
-
-	/**
-	 * Action中再次输入密码使用
-	 */
-	private String examineePassword2;
-	public String getExamineePassword2() {
-		return examineePassword2;
-	}
-	public void setExamineePassword2(String examineePassword2) {
-		this.examineePassword2 = examineePassword2;
-	}
-
-	/**
-     * Action中修改用户密码
-     * @return
-     */
-    public String updatePassword() {
-    	log.debug("Action > 修改用户信息，id为 {}", examineeId);
-        String examineeId = model.getExamineeId();
-        model = examineeService.getExamineeById(examineeId);
-    	log.debug("Action > 修改用户信息，id为 {},{},{}", examineeId, model.getExamineeName(), model.getExamineePhone());
-        
-    	model.setExamineePassword(SecurityFunctions.sha3(this.getExamineePassword2(), 512));
-        examineeService.update(model);
-        String info = ResourceBundle.getBundle("Messages").getString("Examinee.result.updatePassword");
         addActionMessage(info);
         return "success";
     }

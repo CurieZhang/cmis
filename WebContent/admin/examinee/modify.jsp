@@ -64,41 +64,19 @@
 	    </div>
     </div>
    <!-- /examineeName -->
-   <!-- examineePassword -->
-    <div class="form-group">
-      <label class="col-sm-6 control-label" for="examineePassword"><s:text name="Examinee.fieldName.examineePassword"/>&nbsp;<i class="fa fa-ellipsis-h text-danger"></i></label>
-      <div class="col-sm-6">
-	      <s:textfield id="examineePassword" type="password" name="examineePassword" placeholder="%{getText('Examinee.fieldPrompt.examineePassword')}" cssClass="form-control" />
-      </div>
-      <div class="col-sm-6">
-        <s:fielderror fieldName="examineePassword" />
-      </div>
-    </div>
-   <!-- /examineePassword -->
-   <!-- examineePassword2 -->
-    <div class="form-group">
-      <label class="col-sm-6 control-label" for="examineePassword2"><s:text name="Examinee.fieldName.examineePasswordConfirm"/>&nbsp;<i class="fa fa-ellipsis-h text-danger"></i></label>
-      <div class="col-sm-6">
-     		<s:textfield id="examineePassword2" type="password" placeholder="%{getText('Examinee.fieldPrompt.examineePasswordConfirm')}" name="examineePassword2" cssClass="form-control" />
-      </div>
-      <div class="col-sm-6">
-        <s:fielderror fieldName="examineePassword2" />
-      </div>
-    </div>
-   <!-- /examineePassword2 -->
    <!-- /examineeCreator -->
     <div class="form-group">
-      <label class="col-sm-6 control-label" for="examineePhone"><s:text name="Examinee.fieldName.examineePhone"/>&nbsp;<i class="fa fa-mobile-alt text-danger"></i></label>
+      <label class="col-sm-6 control-label" for="examineeAddress"><s:text name="Examinee.fieldName.examineeAddress"/>&nbsp;<i class="fa fa-mobile-alt text-danger"></i></label>
       <div class="col-sm-6">
-	      <s:if test="model.examineePhone != null"> 
-	        <s:textfield id="examineePhone" name="model.examineePhone" placeholder="%{getText('Examinee.fieldPrompt.examineePhone')}" cssClass="form-control"/>
+	      <s:if test="model.examineeAddress != null"> 
+	        <s:textfield id="examineeAddress" name="model.examineeAddress" placeholder="%{getText('Examinee.fieldPrompt.examineeAddress')}" cssClass="form-control"/>
 	      </s:if>
 	      <s:else>
-	        <s:textfield id="examineePhone" name="examineePhone" placeholder="%{getText('Examinee.fieldPrompt.examineePhone')}" cssClass="form-control"/> 
+	        <s:textfield id="examineeAddress" name="examineeAddress" placeholder="%{getText('Examinee.fieldPrompt.examineeAddress')}" cssClass="form-control"/> 
 	      </s:else>
       </div>
 	    <div class="col-sm-6">
-        <s:fielderror fieldName="examineePhone" />
+        <s:fielderror fieldName="examineeAddress" />
 	    </div>
     </div>
     <!-- /examineeCreator -->
@@ -221,36 +199,16 @@
     <!-- status -->
     <div class="form-group">
       <label class="col-sm-6 control-label text-danger" for="status">
-        <s:text name="Examinee.fieldName.status"/>&nbsp;<i class="fa fa-arrow-circle-right text-danger"></i>
+        <s:text name="Examinee.fieldName.examineeStatus"/>&nbsp;<i class="fa fa-arrow-circle-right text-danger"></i>
       </label>
       <div class="col-sm-6">
-        <s:textfield id="status" name="model.status" cssClass="form-control d-none" />
-        <select data-placeholder="%{getText('Examinee.fieldPrompt.status')}" 
-                id="statusSelect" name="model.status" class="selectpicker show-tick" data-width="100%" data-container="body">
-          <option value="STUDENT"><s:text name="Examinee.status.STUDENT"/></option>
-          <option value="COLLEGE"><s:text name="Examinee.status.COLLEGE"/></option>
-          <option value="SITE"><s:text name="Examinee.status.SITE"/></option>
-          <option value="ADMINISTRATOR"><s:text name="Examinee.status.ADMINISTRATOR"/></option>
-          <option value="LOCK_STUDENT"><s:text name="Examinee.status.LOCK_STUDENT"/></option>
-          <option value="LOCK_COLLEGE"><s:text name="Examinee.status.LOCK_COLLEGE"/></option>
-          <option value="LOCK_SITE"><s:text name="Examinee.status.LOCK_SITE"/></option>
-          <option value="LOCK_ADMINISTRATOR"><s:text name="Examinee.status.LOCK_ADMINISTRATOR"/></option>
-          <option value="FIND_PASSWORD_STUDENT"><s:text name="Examinee.status.FIND_PASSWORD_STUDENT"/></option>
-          <option value="FIND_PASSWORD_COLLEGE"><s:text name="Examinee.status.FIND_PASSWORD_COLLEGE"/></option>
-          <option value="FIND_PASSWORD_SITE"><s:text name="Examinee.status.FIND_PASSWORD_SITE"/></option>
-          <option value="FIND_PASSWORD_ADMINISTRATOR"><s:text name="Examinee.status.FIND_PASSWORD_ADMINISTRATOR"/></option>
-        </select>
-        <script type="text/javascript">
-          $("#statusSelect").val($("#status").val());
-          $(document).ready(function () {
-            $("#statusSelect").change(function () {
-              $("#status").val($("#statusSelect ").val());
-            });
-          });
-        </script>
+        <s:select id="examineeStatus" name="model.examineeStatus" 
+                  list="#{0:getText('Examinee.fieldName.examineeStatus.0'), 1:getText('Examinee.fieldName.examineeStatus.1'), 2:getText('Examinee.fieldName.examineeStatus.2')}" 
+                  listKey="key" listValue="value" value="%{model.examineeStatus}"
+                  class="selectpicker show-tick" data-width="100%" data-container="body"/>
       </div>
       <div class="col-sm-6 control-label">
-        <s:fielderror fieldName="status" />
+        <s:fielderror fieldName="examineeStatus" />
       </div>
     </div>
     <!-- /status -->

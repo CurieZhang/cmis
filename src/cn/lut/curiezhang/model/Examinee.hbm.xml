@@ -6,25 +6,160 @@
 <hibernate-mapping>
   <class name="cn.lut.curiezhang.model.Examinee" table="EXAMINEE">
     <id name="examineeId">
-			<column name="EXAMINEE_ID" length="32">
-				<comment>用户id</comment>
-			</column>
-    	<generator class="assigned"/>
+      <column name="EXAMINEE_ID" length="32">
+        <comment>考生id</comment>
+      </column>
+      <generator class="assigned"/>
     </id>
     <property name="examineeName">
-			<column name="EXAMINEE_NAME" not-null="true" length="50">
-				<comment>用户名</comment>
-			</column>
+      <column name="EXAMINEE_NAME" length="100">
+        <comment>考生姓名</comment>
+      </column>
     </property>
-    <property name="examineePassword">
-			<column name="EXAMINEE_PASSWORD" not-null="true" length="128">
-				<comment>用户密码</comment>
-			</column>
+    <property name="examineePictureUrl">
+      <column name="EXAMINEE_PICTURE_URL" length="1000">
+        <comment>照片</comment>
+      </column>
     </property>
-    <property name="examineePhone">
-			<column name="EXAMINEE_PHONE" length="20">
-				<comment>用户手机</comment>
-			</column>
+    <property name="examineeSexId">
+      <column name="EXAMINEE_SEX_ID" default="'1'" length="2">
+        <comment>性别代码</comment>
+      </column>
+    </property>
+    <property name="examineeSexName">
+      <column name="EXAMINEE_SEX_NAME" default="'男'" length="2">
+        <comment>性别名称</comment>
+      </column>
+    </property>
+    <property name="examineeBirthday" type="java.util.Date">
+      <column name="EXAMINEE_BIRTHDAY">
+        <comment>出生日期</comment>
+      </column>
+    </property>
+    <property name="examineeAddress">
+      <column name="EXAMINEE_ADDRESS" length="100">
+        <comment>联系地址</comment>
+      </column>
+    </property>
+    <property name="examineeZipCode">
+      <column name="EXAMINEE_ZIP_CODE" length="6">
+        <comment>邮政编码</comment>
+      </column>
+    </property>
+    <property name="examineeContactPhone">
+      <column name="EXAMINEE_CONTACT_PHONE" length="20">
+        <comment>联系电话</comment>
+      </column>
+    </property>
+    <property name="examineeMobilePhone">
+      <column name="EXAMINEE_MOBILE_PHONE" length="20">
+        <comment>移动电话</comment>
+      </column>
+    </property>
+    <property name="examineeCountyDistrictId">
+      <column name="EXAMINEE_COUNTY_DISTRICT_ID" length="20">
+        <comment>县区代码</comment>
+      </column>
+    </property>
+    <property name="examineeCountyDistrictName">
+      <column name="EXAMINEE_COUNTY_DISTRICT_NAME" length="50">
+        <comment>县区名称</comment>
+      </column>
+    </property>
+    <property name="examineePoliticalStatusId">
+      <column name="EXAMINEE_POLITICAL_STATUS_ID" default="'03'" length="2">
+        <comment>政治面貌代码</comment>
+      </column>
+    </property>
+    <property name="examineePoliticalStatusName">
+      <column name="EXAMINEE_POLITICAL_STATUS_NAME" length="30">
+        <comment>政治面貌名称</comment>
+      </column>
+    </property>
+    <property name="examineeNationalityId">
+      <column name="EXAMINEE_NATIONALITY_ID" default="'01'" length="3">
+        <comment>民族代码</comment>
+      </column>
+    </property>
+    <property name="examineeNationalityName">
+      <column name="EXAMINEE_NATIONALITY_NAME" length="30">
+        <comment>民族名称</comment>
+      </column>
+    </property>
+    <property name="examineeExamineeTypeId">
+      <column name="EXAMINEE_EXAMINEE_TYPE_ID" default="'01'" length="2">
+        <comment>考生类型代码</comment>
+      </column>
+    </property>
+    <property name="examineeExamineeTypeName">
+      <column name="EXAMINEE_EXAMINEE_TYPE_NAME" length="30">
+        <comment>考生类型名称</comment>
+      </column>
+    </property>
+    <property name="examineeDisciplineId">
+      <column name="EXAMINEE_DISCIPLINE_ID" default="'1'" length="2">
+        <comment>科类代码</comment>
+      </column>
+    </property>
+    <property name="examineeDisciplineName">
+      <column name="EXAMINEE_DISCIPLINE_NAME" length="30">
+        <comment>科类名称</comment>
+      </column>
+    </property>
+    <property name="examineeExamineeCategoryId">
+      <column name="EXAMINEE_EXAMINEE_CATEGORY_ID" default="'1'" length="2">
+        <comment>考生类别代码</comment>
+      </column>
+    </property>
+    <property name="examineeExamineeCategoryName">
+      <column name="EXAMINEE_EXAMINEE_CATEGORY_NAME" length="30">
+        <comment>考生类别名称</comment>
+      </column>
+    </property>
+    <property name="examineeGraduationCategoryId">
+      <column name="EXAMINEE_GRADUATION_CATEGORY_ID" default="'1'" length="2">
+        <comment>毕业类别代码</comment>
+      </column>
+    </property>
+    <property name="examineeGraduationCategoryName">
+      <column name="EXAMINEE_GRADUATION_CATEGORY_NAME" length="50">
+        <comment>毕业类别名称    普通高中毕业   其他中等专业学校毕业   职业高中毕业 中等师范毕业</comment>
+      </column>
+    </property>
+    <property name="examineeGraduationSchoolId">
+      <column name="EXAMINEE_GRADUATION_SCHOOL_ID" length="10">
+        <comment>毕业学校代码</comment>
+      </column>
+    </property>
+    <property name="examineeGraduationSchoolName">
+      <column name="EXAMINEE_GRADUATION_SCHOOL_NAME" length="100">
+        <comment>毕业学校名称</comment>
+      </column>
+    </property>
+    <property name="examineeForeignLanguageId">
+      <column name="EXAMINEE_FOREIGN_LANGUAGE_ID" default="'1'" length="3">
+        <comment>外语语种代码</comment>
+      </column>
+    </property>
+    <property name="examineeForeignLanguageName">
+      <column name="EXAMINEE_FOREIGN_LANGUAGE_NAME" length="50">
+        <comment>外语语种名称</comment>
+      </column>
+    </property>
+    <property name="examineeIdNumber">
+      <column name="EXAMINEE_ID_NUMBER" length="20">
+        <comment>身份证号</comment>
+      </column>
+    </property>
+    <property name="examineeRegistrationPointId">
+      <column name="EXAMINEE_REGISTRATION_POINT_ID" length="5">
+        <comment>报名点代码</comment>
+      </column>
+    </property>
+    <property name="examineeRegistrationPointName">
+      <column name="EXAMINEE_REGISTRATION_POINT_NAME" length="100">
+        <comment>报名点名称</comment>
+      </column>
     </property>
     <property name="examineeCreator">
       <column name="EXAMINEE_CREATOR" length="32">
@@ -46,16 +181,35 @@
         <comment>审核时间</comment>
       </column>
     </property>
-    <!-- 0学生 1院校 2考点 3管理员 10锁定学生 11锁定院校 12锁定考点 13锁定管理员 90~93找回密码 -->
-    <property name="status">
-      <column name="STATUS" default="0" length="2">
-        <comment>用户状态：0学生 1院校 2考点 3管理员 4锁定学生 5锁定院校 6锁定考点 7锁定管理员 8找回学生密码 9找回院校密码 10找回考点密码 11找回管理员密码</comment>
+    <property name="examineeType" type="java.lang.Byte">
+      <column name="EXAMINEE_TYPE" default="0" length="2">
+        <comment>类型 0整个平台 1学生 2院校 3考点 4管理机构（暂时没用）</comment>
       </column>
-      <type name="org.hibernate.type.EnumType">
-        <param name="enumClass">cn.lut.curiezhang.model.ExamineeStatus</param>
-        <param name="type">-6</param>
-        <!-- <param name="useNamed">true</param> -->
-      </type>
     </property>
+    <property name="examineeMemo">
+      <column name="EXAMINEE_MEMO" length="350">
+        <comment>备注</comment>
+      </column>
+    </property>
+    <property name="examineeError">
+      <column name="EXAMINEE_ERROR" length="1000">
+        <comment>错误</comment>
+      </column>
+    </property>
+    <property name="examineeStatus" type="java.lang.Byte">
+      <column name="EXAMINEE_STATUS" default="0" length="2">
+        <comment>状态 0正常 1确认 2有错误</comment>
+      </column>
+    </property>
+    <!-- <many-to-one name="discipline" class="cn.lut.curiezhang.model.Discipline" fetch="select" cascade="none" lazy="false">
+      <column name="DISCIPLINE_ID" length="32">
+        <comment>考生科类</comment>
+      </column>
+    </many-to-one>
+    <many-to-one name="countyDistrict" class="cn.lut.curiezhang.model.CountyDistrict" fetch="select" cascade="none" lazy="false">
+      <column name="COUNTY_DISTRICT_ID" length="32">
+        <comment>县区代码</comment>
+      </column>
+    </many-to-one> -->
   </class>
 </hibernate-mapping>
